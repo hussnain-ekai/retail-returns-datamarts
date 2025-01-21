@@ -1,0 +1,31 @@
+
+version: 2
+
+models:
+  - name: returns_data_mart
+    description: "A data mart model aggregating return and refund information by return ID and sales channel."
+    columns:
+      - name: RETURN_ID
+        description: "Unique identifier for each return."
+        tests:
+          - not_null
+          - unique
+      - name: SALES_CHANNEL
+        description: "The sales channel through which the order was made."
+        tests:
+          - not_null
+      - name: total_returns
+        description: "Total number of returns."
+      - name: total_refund_amount
+        description: "Total amount refunded for returns."
+      - name: average_refund_amount_per_return
+        description: "Average refund amount per return."
+      - name: refunds_by_sales_channel
+        description: "Total refund amount segmented by sales channel."
+      - name: average_time_to_issue_refund
+        description: "Average number of days to issue a refund after return initiation."
+    tests:
+      - unique:
+          column_name: RETURN_ID
+      - not_null:
+          column_name: RETURN_ID
